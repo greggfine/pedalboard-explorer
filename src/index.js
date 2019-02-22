@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import combineReducers from './reducers';
 
 ReactDOM.render(
-    <Provider  store={createStore(() => {})}>
+    <Provider  store={createStore(combineReducers)}>
         <App />
     </Provider>, document.getElementById('root')
 )
