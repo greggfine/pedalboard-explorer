@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Link, Route} from 'react-router-dom';
 import Creator from './containers/Creator';
 import MyBoards from './containers/MyBoards';
+import Detail from './containers/Detail';
 
 export default class App extends React.Component {
 
@@ -16,6 +17,7 @@ export default class App extends React.Component {
                     </nav>
                     <Route exact path='/' component={Creator} />
                     <Route path='/my-boards' component={MyBoards} />
+                    <Route path='/detail/:id' component={Detail} />
                 </div>
             </BrowserRouter>
             

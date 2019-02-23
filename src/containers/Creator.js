@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectEffectType } from '../actions';
 import { effectsData } from '../effectsData';
+import { Link } from 'react-router-dom';
 
 class Creator extends React.Component {
 
@@ -13,7 +14,11 @@ class Creator extends React.Component {
 
     renderBrandList(){
         return this.props.effectBrands[0].brands.map((brand) => {
-            return <li key={brand}>{brand}</li>
+            return (
+                <Link to ={`/detail/${brand}`}>
+                 <li key={brand}>{brand}</li>
+                </Link>
+            )
         })
     }
 
