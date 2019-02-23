@@ -3,57 +3,53 @@ import { connect } from 'react-redux';
 import { selectEffectType, selectSlot } from '../actions';
 import { effectsData } from '../effectsData';
 import { Link } from 'react-router-dom';
+import Pedalboard from '../components/Pedalboard';
 
 class Creator extends React.Component {
 
-    renderEffectTypeList(){
+    createEffectTypeList(){
         return effectsData.effectInfo.map((obj) => (
              <option key={obj.category}>{obj.category}</option>
         ))
     }
 
-    renderOptions(){
+    createOptions(){
         const options = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        return options.map((option) => {
-            return <option>{option}</option>
-        })
+        return options.map((option) => (
+             <option>{option}</option>
+            ))
     }
 
-    renderBrandList(){
-
-        return this.props.effectBrands[0].brands.map((brand) => {
-            return (
+    createBrandList(){
+        return this.props.effectBrands.effectBrands[0].brands.map((brand) => (
                 <div>
                     <Link to ={`/detail/${brand}`}>
                         <li key={brand}>{brand}</li>
                     </Link>
-                    <select 
-                        onChange={this.props.selectSlot}
-                        name="" id="">
+                    <select onChange={(e, company) => this.props.selectSlot(e.target.value, brand)} name="" id="">
                         <option selected></option>
-                        {this.renderOptions()}
+                        {this.createOptions()}
                     </select>
                 </div>
-            )
-        })
+            ))
     }
 
 
     render(){
-        const { selectEffectType } = this.props;
-
+        const { selectEffectType, selectedSlot } = this.props;
         return (
-            <section>
-                <select name="" id=""
-                    onChange={this.props.selectEffectType}
-                    >
+            <section style={{display: 'flex', justifyContent: 'space-around'}}>
+                <select name="" id="" onChange={(e) => selectEffectType(e.target.value)}>
                     <option disabled selected>Effect type</option>
-                    {this.renderEffectTypeList()}
+                    {this.createEffectTypeList()}
                 </select>
                 <ul>
-                    {this.renderBrandList()}
+                    {this.createBrandList()}
                 </ul>
-                <h1>{this.props.selectedSlot}</h1>
+                <Pedalboard 
+                    slot={selectedSlot.selectedSlot.slot} 
+                    brand={selectedSlot.selectedSlot.brand}/>
+
             </section>
         )
     }
@@ -67,12 +63,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        selectEffectType: (e) => dispatch(selectEffectType(e.target.value)),
-        selectSlot: (e) => dispatch(selectSlot(e.target.value))
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Creator);
+export default connect(mapStateToProps, {selectEffectType, selectSlot})(Creator);

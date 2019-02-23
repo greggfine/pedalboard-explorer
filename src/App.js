@@ -4,9 +4,8 @@ import Creator from './containers/Creator';
 import MyBoards from './containers/MyBoards';
 import Detail from './containers/Detail';
 
-export default class App extends React.Component {
+export default () => {
 
-    render(){
         return (
             <BrowserRouter>
                 <div>
@@ -22,5 +21,5 @@ export default class App extends React.Component {
             </BrowserRouter>
             
         )
-    }
 }
+
