@@ -73,7 +73,8 @@ export const effectsData  = {
     
     ],
     effectBrands: [{brands:[]}],
-    effectName: 'distortion'
+    effectName: 'distortion',
+    selectedSlot: 1
 }
 
 

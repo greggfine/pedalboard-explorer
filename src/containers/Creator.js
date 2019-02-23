@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectEffectType } from '../actions';
+import { selectEffectType, selectSlot } from '../actions';
 import { effectsData } from '../effectsData';
 import { Link } from 'react-router-dom';
 
@@ -12,12 +12,28 @@ class Creator extends React.Component {
         ))
     }
 
+    renderOptions(){
+        const options = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        return options.map((option) => {
+            return <option>{option}</option>
+        })
+    }
+
     renderBrandList(){
+
         return this.props.effectBrands[0].brands.map((brand) => {
             return (
-                <Link to ={`/detail/${brand}`}>
-                 <li key={brand}>{brand}</li>
-                </Link>
+                <div>
+                    <Link to ={`/detail/${brand}`}>
+                        <li key={brand}>{brand}</li>
+                    </Link>
+                    <select 
+                        onChange={this.props.selectSlot}
+                        name="" id="">
+                        <option selected></option>
+                        {this.renderOptions()}
+                    </select>
+                </div>
             )
         })
     }
@@ -29,14 +45,15 @@ class Creator extends React.Component {
         return (
             <section>
                 <select name="" id=""
-                    onChange={(e) => selectEffectType(e.target.value)}
+                    onChange={this.props.selectEffectType}
                     >
-                    <option disabled>Effect type</option>
+                    <option disabled selected>Effect type</option>
                     {this.renderEffectTypeList()}
                 </select>
                 <ul>
                     {this.renderBrandList()}
                 </ul>
+                <h1>{this.props.selectedSlot}</h1>
             </section>
         )
     }
@@ -45,9 +62,17 @@ class Creator extends React.Component {
 const mapStateToProps = (state) => {
     return {
         effects: state.effectsInfo,
-        effectBrands: state.effectBrands
+        effectBrands: state.effectBrands,
+        selectedSlot: state.selectedSlot
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectEffectType: (e) => dispatch(selectEffectType(e.target.value)),
+        selectSlot: (e) => dispatch(selectSlot(e.target.value))
     }
 }
 
 
-export default connect(mapStateToProps, {selectEffectType})(Creator);
+export default connect(mapStateToProps, mapDispatchToProps)(Creator);
