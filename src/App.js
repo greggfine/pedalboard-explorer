@@ -4,9 +4,6 @@ import Creator from './containers/Creator';
 import MyBoards from './containers/MyBoards';
 
 export default class App extends React.Component {
-    constructor(props){
-        super(props)
-    }
 
     render(){
         return (

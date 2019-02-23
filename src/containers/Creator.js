@@ -1,26 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectEffectType } from '../actions';
+import { effectsData } from '../effectsData';
 
 class Creator extends React.Component {
 
     renderEffectTypeList(){
-        return this.props.effectTypes.map((effectType) => (
-             <option key={effectType.category}>{effectType.category}</option>
+        return effectsData.effectInfo.map((obj) => (
+             <option key={obj.category}>{obj.category}</option>
         ))
     }
 
+    renderBrandList(){
+        return this.props.effectBrands[0].brands.map((brand) => {
+            return <li key={brand}>{brand}</li>
+        })
+    }
+
+
     render(){
-        const { selectEffectType, effectType } = this.props;
+        const { selectEffectType } = this.props;
+
         return (
             <section>
                 <select name="" id=""
                     onChange={(e) => selectEffectType(e.target.value)}
                     >
-                    <option disabled  selected>Effect type</option>
+                    <option disabled>Effect type</option>
                     {this.renderEffectTypeList()}
                 </select>
-                <h1>{effectType}</h1>
+                <ul>
+                    {this.renderBrandList()}
+                </ul>
             </section>
         )
     }
@@ -28,8 +39,8 @@ class Creator extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        effectTypes: state.effectTypes,
-        effectType: state.selectedEffectType.effectType
+        effects: state.effectsInfo,
+        effectBrands: state.effectBrands
     }
 }
 
