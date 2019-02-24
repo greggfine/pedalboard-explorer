@@ -10,7 +10,7 @@ export default () => {
         return (
             <BrowserRouter>
                 <div>
-                    <nav class="nav">
+                    <nav className="nav">
                         <h1>Pedalboard Explorer</h1>
                         <Link to="/">Create</Link> <br/>
                         <Link to="/my-boards">myBoards</Link>

@@ -5,9 +5,9 @@ class Pedalboard extends Component{
   
   render(){
     console.log(this.props.selectedSlot)
-      const slots = this.props.selectedSlot.map((brand) => {
-        return <div>
-          <img src={brand} alt="" />
+      const slots = this.props.selectedSlot.map((brand, i) => {
+        return <div key={i}>
+            <img src={brand} alt="" />
           </div>
       })
     return (

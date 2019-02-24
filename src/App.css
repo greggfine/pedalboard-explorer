@@ -11,15 +11,22 @@ body {
     padding: 0;
 }
 
+.brand {
+    display: flex;
+    justify-content: space-around;
+    padding: 7px;
+    width: 300px;
+}
+
 .brand-list {
     list-style-type: none;
 }
 
 .creator {
-    margin-top: 60px;
     display: flex;
     justify-content: space-around;
-    max-width: 600px;
+    max-width: 1000px;
+    margin: 60px auto;
 }
 
 img {
@@ -40,9 +47,9 @@ img {
     height: 300px;
     width: 460px;
     background-image: url('https://www.premierguitar.com/ext/resources/images/content/2015_01/LNU/Jan15_LNU_Pedaltrain_CLASSIC-PRO-TOP-VIEW.jpeg');
-    background-size: 185%;
+    background-size: 171%;
     background-repeat: no-repeat;
-    background-position: 50% 47%;
+    background-position: 53% 41%;
 }
 
 .pedal-board div {

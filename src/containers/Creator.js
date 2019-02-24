@@ -23,7 +23,7 @@ class Creator extends React.Component {
     createBrandList(){
         const { initialState } = this.props;
         return initialState.selectedEffect.map((brand) => (
-                <div>
+                <div className="brand">
                     <Link to ={`/detail/${brand.name}`}>
                         <li key={brand.name}>{brand.name}</li>
                     </Link>
@@ -40,13 +40,15 @@ class Creator extends React.Component {
         const { selectEffectType, selectedSlot } = this.props;
         return (
             <section className="creator">
-                <select onChange={(e) => selectEffectType(e.target.value)}>
-                    <option disabled selected>Effect type</option>
-                    {this.createEffectTypeList()}
-                </select>
-                <ul className="brand-list">
-                    {this.createBrandList()}
-                </ul> 
+                <div>
+                    <select onChange={(e) => selectEffectType(e.target.value)}>
+                        <option disabled selected>Effect type</option>
+                        {this.createEffectTypeList()}
+                    </select>
+                    <ul className="brand-list">
+                        {this.createBrandList()}
+                    </ul> 
+                </div>
                 <Pedalboard />
 
 
