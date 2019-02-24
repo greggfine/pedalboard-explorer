@@ -2,38 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Pedalboard extends Component{
+  
   render(){
     console.log(this.props.selectedSlot)
+      const slots = this.props.selectedSlot.map((brand) => {
+        return <div>
+          <img src={brand} alt="" />
+          </div>
+      })
     return (
       <div>
         <h1>Pedalboard</h1>
-        <div>
-            <p>{this.props.slot}</p>
-            <p>{this.props.brand}</p>
+        <div className='pedal-board' >
+            {slots}
         </div>
-
-        <div>
-            <p>{this.props.slot}</p>
-            <p>{this.props.brand}</p>
-        </div>
-
-        <div>
-            <p>{this.props.slot}</p>
-            <p>{this.props.brand}</p>
-        </div>
-        
-        <p>{this.props.pedalBoardSlots[0].brand}</p>
-        <p>{this.props.selectedSlot.selectedSlot.slot}</p>
       </div>
     )
   }
     
   }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ selectedSlot }) => {
   return {
-    pedalBoardSlots: state.pedalBoardSlots,
-    selectedSlot: state.selectedSlot
+    selectedSlot
   }
 }
 

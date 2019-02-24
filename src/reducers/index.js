@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
 
-import populateEffectTypesReducer from './PopulateEffectTypesReducer';
-import pedalBoardSlotsReducer from './PedalBoardSlotsReducer';
+import initialStateReducer from './InitialStateReducer';
+import selectedSlotReducer from './SelectedSlotReducer';
+// import brandListReducer from './BrandListReducer';
+// import pedalBoardSlotsReducer from './PedalBoardSlotsReducer';
 
 
 export default combineReducers({
-    effectsInfo: populateEffectTypesReducer,
-    effectBrands: populateEffectTypesReducer,
-    selectedSlot: populateEffectTypesReducer,
-    pedalBoardSlots: pedalBoardSlotsReducer
+    initialState: initialStateReducer,
+    selectedSlot: selectedSlotReducer
+    // brandList: brandListReducer
+    // effectBrands: populateEffectTypesReducer,
+    // selectedSlot: populateEffectTypesReducer,
+    // pedalBoardSlots: pedalBoardSlotsReducer
 })
 

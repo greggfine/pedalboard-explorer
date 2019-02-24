@@ -3,13 +3,14 @@ import { BrowserRouter, Link, Route} from 'react-router-dom';
 import Creator from './containers/Creator';
 import MyBoards from './containers/MyBoards';
 import Detail from './containers/Detail';
+import './App.css';
 
 export default () => {
 
         return (
             <BrowserRouter>
                 <div>
-                    <nav>
+                    <nav class="nav">
                         <h1>Pedalboard Explorer</h1>
                         <Link to="/">Create</Link> <br/>
                         <Link to="/my-boards">myBoards</Link>
