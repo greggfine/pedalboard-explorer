@@ -8,6 +8,7 @@ export const selectEffectType = (effectType) => {
 }
 
 export const selectSlot = (slot, brand) => {
+    slot = slot - 1;
     return {
         type: SLOT_SELECTED,
         payload: {slot, brand}

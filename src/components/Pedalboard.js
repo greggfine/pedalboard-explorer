@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 class Pedalboard extends Component{
   
   render(){
-    console.log(this.props.selectedSlot)
-      const slots = this.props.selectedSlot.map((brand, i) => {
+    const slots = this.props.selectedSlot.map((brand, i) => {
         return <div key={i}>
             <img src={brand} alt="" />
           </div>
