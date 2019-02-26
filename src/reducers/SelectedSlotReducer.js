@@ -3,9 +3,8 @@ import { SLOT_SELECTED } from '../constants';
 export default (state=['', '', '', '', '', '', '', '', '', ''], action) => {
     switch(action.type){
         case SLOT_SELECTED:
-            const { slot, brand } = action.payload;
-            console.log('slot: ', slot, 'brand: ', brand)
-            console.log(state)
+            const { slot, brand, activeState } = action.payload;
+            console.log('slot: ', slot, 'brand: ', brand, 'activeState: ', activeState)
             if(state.includes(brand)){
                 state.splice(state.indexOf(brand), 1, '')
                 state.splice(slot, 1, brand)

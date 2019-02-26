@@ -1,4 +1,4 @@
-import { EFFECT_TYPE_SELECTED, SLOT_SELECTED } from '../constants';
+import { EFFECT_TYPE_SELECTED, SLOT_SELECTED, OPTIONS_CREATED } from '../constants';
 
 export const selectEffectType = (effectType) => {
     return {
@@ -12,5 +12,12 @@ export const selectSlot = (slot, brand) => {
     return {
         type: SLOT_SELECTED,
         payload: {slot, brand}
+    }
+}
+
+export const createOptions = (slot, brand, disabledState) => {
+    return {
+        type: OPTIONS_CREATED,
+        payload: {slot, brand, disabledState}
     }
 }

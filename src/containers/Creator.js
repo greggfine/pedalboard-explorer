@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectEffectType, selectSlot } from '../actions';
+import { selectEffectType, selectSlot, createOptions } from '../actions';
 import { Link } from 'react-router-dom';
 import Pedalboard from '../components/Pedalboard';
 
@@ -14,29 +14,45 @@ class Creator extends React.Component {
     }
 
     createOptions(){
-        const numOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        return numOptions.map((option) => (
-             <option>{option}</option>
+        const { options } = this.props;
+        return options.map((option, index) => (
+            //  <option disabled={option.disabledState} selected={option.selected}></option>
+             <option data-index={index} disabled={option.disabledState} selected={option.selected}>{option.slot}</option>
         ))
     }
 
+    componentDidMount() {
+        this.props.createOptions();
+    }   
+
     createBrandList(){
-        const { initialState } = this.props;
+        const { initialState, options } = this.props;
         return initialState.selectedEffect.map((brand) => (
                 <div className="brand">
                     <Link to ={`/detail/${brand.name}`}>
                         <li key={brand.name}>{brand.name}</li>
                     </Link>
-                    <select onChange={(e, company) => this.props.selectSlot(e.target.value, brand.imgURL)}>
-                        <option selected></option>
+                    {/* <select onChange={(e, company) => this.props.selectSlot(e.target.value, 
+                            brand.imgURL)}> */}
+
+                        <select onChange={(e, company) => {
+                            // console.log(e.target.element)
+                            // console.log(e.getAttribute('id'))
+                            this.props.createOptions(e.target.value, 
+                            brand.imgURL)}}>
                         {this.createOptions()}
+                        {/* <option id='1'>1</option>
+                        <option id='2'>2</option>
+                        <option id='3'>3</option> */}
+
+                        
+                        
                     </select>
                 </div>
             ))
     }
 
     render(){
-        console.log(this.props.initialState)
         const { selectEffectType, selectedSlot } = this.props;
         return (
             <section className="creator">
@@ -57,11 +73,11 @@ class Creator extends React.Component {
     }
 }
 
-const mapStateToProps = ({initialState}) => {
+const mapStateToProps = ({initialState, options}) => {
     return {
         initialState,
-        // selectedSlot
+        options
     }
 }
 
-export default connect(mapStateToProps, { selectEffectType, selectSlot })(Creator);
+export default connect(mapStateToProps, { selectEffectType, selectSlot, createOptions })(Creator);
